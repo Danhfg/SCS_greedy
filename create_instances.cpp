@@ -16,13 +16,29 @@ int main()
         for (auto j(0u);j < rand_number; ++j){
             aux += alphab[dist4(rng)];
         }
-        reads.push_back(aux);
+        //std::cout << aux << std::endl;
+        if (!reads.empty())
+        {
+            auto find (false);
+            for (auto const& read: reads) {
+                auto pos (read.find(aux));
+                if (pos != std::string::npos)
+                    find = true;
+                pos = aux.find(read);
+                if (pos != std::string::npos)
+                    find = true;
+            }
+            if (!find)
+                reads.push_back(aux);
+        }
+        else
+            reads.push_back(aux);
         ++i;
         rand_number = dist50(rng);
     }
 
     for (auto const& i: reads) {
-		std::cout << i << "\n";
-	}
+        std::cout << i << "\n";
+    }
     
 }

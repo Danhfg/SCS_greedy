@@ -14,19 +14,19 @@ static bool starts_with(const std::string str, const std::string prefix)
 }
 
 int overlap(std::string a, std::string b, int min_length=5)
-    {
-        /* Retorna o tamanho do maior sufixo ou prefixo que contenha pelo menos min_length.
-            Se não existir sobreposição, returna 0. */
-        int start = 0; 
-        while (1){
-            start = a.find(b.substr(0,min_length), start);
-            if (start == -1)
-                return 0;
-            if (starts_with(b,a.substr(start,a.size()-1) ) )
-                return (a.size())-start;
-            start += 1;
-        }
+{
+    /* Retorna o tamanho do maior sufixo ou prefixo que contenha pelo menos min_length.
+        Se não existir sobreposição, returna 0. */
+    int start = 0; 
+    while (1){
+        start = a.find(b.substr(0,min_length), start);
+        if (start == -1)
+            return 0;
+        if (starts_with(b,a.substr(start,a.size()-1) ) )
+            return (a.size())-start;
+        start += 1;
     }
+}
 
 std::vector<std::pair<int,int>> arrangement(std::vector<std::string> reads){
     std::vector<std::pair<int,int>> arrang;
@@ -68,8 +68,8 @@ std::string greedy_scs(std::vector<std::string>reads, int k){
     while (over > 0){
 
         std::string aux = reads[read_a]+reads[read_b].substr(over);
-        reads[read_a] = aux;
-        reads.erase(reads.begin()+read_b);
+        reads[read_b] = aux;
+        reads.erase(reads.begin()+read_a);
 
         auto maximal (pick_maximal_overlap(reads,k));
         read_a = std::get<0>(maximal);
@@ -95,9 +95,18 @@ int main(int argc, char *argv[]){
             vet.push_back(line);
         }
         f.close();
+        if (vet.empty())
+        {
+            std::cerr << "To run: ./exe_greedy <file>" << std::endl;
+        }
+        else{
+            auto scs (greedy_scs(vet, 1));
+            std::cout << "The shortest common superstring is: " << scs << std::endl;
+            std::cout << "The size of the shortest common superstring is: " << scs.size() << std::endl;
+        }
     }
-
-    //std::vector<std::string> vet = {"ABCD", "CDBC", "BCDA"};
-    auto scs (greedy_scs(vet, 1));
-    std::cout << "The shortest common superstring is: " << scs << std::endl;
+    else
+    {
+        std::cerr << "To run: ./exe_greedy <file>" << std::endl;
+    }
 }
