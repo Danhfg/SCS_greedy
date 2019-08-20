@@ -13,10 +13,10 @@ static bool starts_with(const std::string str, const std::string prefix)
     return ((prefix.size() <= str.size()) && std::equal(prefix.begin(), prefix.end(), str.begin()));
 }
 
-int overlap(std::string a, std::string b, int min_length=3)
+int overlap(std::string a, std::string b, int min_length=5)
     {
-        /*  Return length of longest suffix of 'a' matching a prefix of 'b' that is at least 'min_length'
-            characters long.  If no such overlap exists, return 0. */
+        /* Retorna o tamanho do maior sufixo ou prefixo que contenha pelo menos min_length.
+            Se não existir sobreposição, returna 0. */
         int start = 0; 
         while (1){
             start = a.find(b.substr(0,min_length), start);
@@ -24,7 +24,7 @@ int overlap(std::string a, std::string b, int min_length=3)
                 return 0;
             if (starts_with(b,a.substr(start,a.size()-1) ) )
                 return (a.size())-start;
-            start += 1;// move just past previous match
+            start += 1;
         }
     }
 
@@ -41,9 +41,8 @@ std::vector<std::pair<int,int>> arrangement(std::vector<std::string> reads){
 }
 
 std::tuple <int,int,int> pick_maximal_overlap(std::vector<std::string> reads, int k){
-    /*""" Return a pair of reads from the list with a
-        maximal suffix/prefix overlap >= k.  Returns
-        overlap length 0 if there are no such overlaps."""*/
+    /* Retorna uma tupla a posição dos pares da lista que contém suffix/prefix maximal
+        com sobreposição >= k, além da sobreposição*/
     int read_a = 0;
     int read_b = 0;
     int best_over = 0;
@@ -97,8 +96,6 @@ int main(int argc, char *argv[]){
         }
         f.close();
     }
-
-
 
     //std::vector<std::string> vet = {"ABCD", "CDBC", "BCDA"};
     auto scs (greedy_scs(vet, 1));
