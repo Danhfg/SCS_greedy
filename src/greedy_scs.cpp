@@ -1,3 +1,8 @@
+/**
+ * @file	greedy_scs.cpp
+ * @brief	Contem o a implementacao do algoritmo guloso GREEDY
+ */
+
 #include <string>
 #include <iostream>
 #include <utility>
@@ -8,13 +13,14 @@
 #include <string>
 
 //https://stackoverflow.com/questions/1878001/how-do-i-check-if-a-c-stdstring-starts-with-a-certain-string-and-convert-a
-static bool starts_with(const std::string str, const std::string prefix)
-{
+/**
+ * @brief	Checa se uma string comeca com certa string e em seguida converta a substring em um numero
+ */
+static bool starts_with(const std::string str, const std::string prefix){
     return ((prefix.size() <= str.size()) && std::equal(prefix.begin(), prefix.end(), str.begin()));
 }
 
-int overlap(std::string a, std::string b, int min_length=5)
-{
+int overlap(std::string a, std::string b, int min_length=5){
     /* Retorna o tamanho do maior sufixo ou prefixo que contenha pelo menos min_length.
         Se não existir sobreposição, returna 0. */
     int start = 0; 
@@ -83,10 +89,12 @@ std::string greedy_scs(std::vector<std::string>reads, int k){
 }
 
 int main(int argc, char *argv[]){
-    std::fstream f(argv[1]);
+    
+	std::fstream f(argv[1]);
     std::string line;    
     std::vector<std::string> vet;
-    if (f.is_open())
+    
+	if (f.is_open())
     {
         while (!f.eof() )
         {

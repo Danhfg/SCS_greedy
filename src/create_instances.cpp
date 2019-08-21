@@ -1,3 +1,8 @@
+/**
+ * @file	create_instances.cpp
+ * @brief	Contem o programa que cria as instancias para caso de uso
+ */
+
 #include <random>
 #include <iostream>
 #include <string>
@@ -7,17 +12,23 @@ int main(int argc, char *argv[])
 {
     int len = 50;
     int block = 100;
-    if (argc > 1)
+
+	/// Verificacao de argumentos
+	if (argc > 1)
         len = std::stoi(argv[1]);
-    if (argc > 2)
+    
+	if (argc > 2)
         block = std::stoi(argv[2]);
-    std::random_device dev;
+    
+	std::random_device dev;
     std::mt19937 rng(dev());
     std::uniform_int_distribution<std::mt19937::result_type> dist50(4,len); 
     std::uniform_int_distribution<std::mt19937::result_type> dist502(4,len*len); 
     std::uniform_int_distribution<std::mt19937::result_type> dist4(0,3);
     std::uniform_int_distribution<std::mt19937::result_type> dist3(0,2);
-    std::vector<std::string> alphab = {"A","C","T","G"};
+    
+	/// Vetor que contem o alfabeto
+	std::vector<std::string> alphab = {"A","C","T","G"};
 
     std::string str = "";
     int j = 1;
