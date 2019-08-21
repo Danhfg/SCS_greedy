@@ -82,6 +82,13 @@ int main(int argc, char *argv[]){
 
             std::cout << "The shortest common superstring is: " << scs_final << std::endl;
             std::cout << "The size of the shortest common superstring is: " << scs_final.size() << std::endl;
+            
+            auto max(0u);
+            for (auto const& i: vet) {
+                if (max < i.size())
+                    max = i.size();
+            }
+            std::cout << "The length of the longest string found in the file is: " << max << std::endl;
         }
     }
     else{

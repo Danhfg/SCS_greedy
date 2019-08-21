@@ -66,7 +66,6 @@ std::string greedy_scs(std::vector<std::string>reads, int k){
     int read_b = std::get<1>(maximal);
     int over = std::get<2>(maximal);
     while (over > 0){
-
         std::string aux = reads[read_a]+reads[read_b].substr(over);
         reads[read_b] = aux;
         reads.erase(reads.begin()+read_a);
@@ -103,6 +102,13 @@ int main(int argc, char *argv[]){
             auto scs (greedy_scs(vet, 1));
             std::cout << "The shortest common superstring is: " << scs << std::endl;
             std::cout << "The size of the shortest common superstring is: " << scs.size() << std::endl;
+
+            auto max(0u);
+            for (auto const& i: vet) {
+                if (max < i.size())
+                    max = i.size();
+            }
+            std::cout << "The length of the longest string found in the file is: " << max << std::endl;
         }
     }
     else
