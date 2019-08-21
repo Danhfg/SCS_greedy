@@ -10,7 +10,7 @@ Neste repositorio ha a implementacao de um algoritmo guloso denominado de GREEDY
 
 ## Requisitos    
 
-Compilador C++ 14 (g++).
+Compilador C++ 14 (__g++__).
 	
 	Obs.: Para usuários Linux, o g++ eh nativo, faltando apenas atualiza-lo para a versao 14.  
 	Porém, caso deseje usar o g++ no Windows será necessário instalar-lo por meio do MinGW. 
@@ -44,7 +44,7 @@ Ou, para **executar o algoritmo de criação de instâncias para o limite inferi
 $ make inst_lower
 $ ./exe_inst_lower <k> > <filename> 
 ``` 
-Alem disso, caso deseje limpar o executaveis, digite
+Alem disso, caso deseje limpar o executaveis, digite o seguinte comando:
 ```
 $ make clean
 ``` 
