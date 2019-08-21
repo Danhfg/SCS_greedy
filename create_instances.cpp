@@ -34,9 +34,9 @@ int main(int argc, char *argv[])
             len -= 50;
         std::string aux = str.substr(rand_number,len);
         if (int(rand_number)+50 > len*len - len)
-            rand_number -= dist502(rng);
+            rand_number -= dist4(rng);
         else
-            rand_number += dist502(rng);
+            rand_number += dist4(rng);
 
 
         if (!reads.empty())
